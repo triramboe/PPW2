@@ -25,3 +25,4 @@ Route::get('/about', function(){
         ]); 
 });
 
+Route::get('/welcome', [myController::class,'hallo']);
