@@ -3,15 +3,22 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Buku;
 
-class myController extends Controller
+class BukuController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-       
+        $data_buku = Buku::all()->sortByDesc('id');
+        $no = 0;
+        //jumlah data buku
+        $jumlahData = count($data_buku);
+        //jumlah harga seluruh buku
+        $totalHarga = Buku::sum('harga');
+        return view('buku.index', compact('data_buku','no', 'jumlahData', 'totalHarga'));
     }
 
     /**
@@ -60,9 +67,5 @@ class myController extends Controller
     public function destroy(string $id)
     {
         //
-    }
-
-    public function hallo(){
-        return view('welcome');
     }
 }
