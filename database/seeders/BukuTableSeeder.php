@@ -19,19 +19,19 @@ class BukuTableSeeder extends Seeder
                 'judul' => 'Judul Buku 1',
                 'penulis' => 'Penulis 1',
                 'harga' => 50,
-                'tg_terbit' => '2023-01-15',
+                'tgl_terbit' => '2023-01-15',
             ],
             [
                 'judul' => 'Judul Buku 2',
                 'penulis' => 'Penulis 2',
                 'harga' => 40,
-                'tg_terbit' => '2023-02-20',
+                'tgl_terbit' => '2023-02-20',
             ],
             [
                 'judul' => 'Judul Buku 3',
                 'penulis' => 'Penulis 3',
                 'harga' => 60,
-                'tg_terbit' => '2023-03-25',
+                'tgl_terbit' => '2023-03-25',
             ],
         ];
 

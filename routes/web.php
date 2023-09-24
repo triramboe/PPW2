@@ -29,3 +29,8 @@ Route::get('/about', function(){
 Route::get('/welcome', [myController::class,'hallo']);
 
 Route::get('/buku', [BukuController::class,'index']);
+Route::get('/buku/create', [BukuController::class, 'create'])->name('buku.create');
+Route::post('/buku', [BukuController::class, 'store'])->name('buku.store');
+Route::delete('/buku/delete/{id}', [BukuController::class, 'destroy'] )->name('buku.destroy');
+Route::put('/buku/edit/{id}', [BukuController::class, 'edit'] )->name('buku.edit');
+Route::put('/buku/update/{id}', [BukuController::class, 'update'] )->name('buku.update');
