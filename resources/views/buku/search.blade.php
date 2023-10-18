@@ -11,6 +11,15 @@
 </head>
 <body>
     <div class="container mt-4">
+         <!-- Alert cari buku -->
+         @if(count($data_buku))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">Ditemukan <strong>{{count($data_buku)}}</strong> data buku dengan kata:
+            <strong>{{$cari}}</strong>
+        </div>
+        @else
+        <div class="alert alert-warning">Tidak ditemukan data buku dengan kata: <strong>{{$cari}}</strong>
+        </div>
+        @endif
         @if(Session::has('pesan'))
         <div class="alert alert-success">{{session::get('pesan')}}</div>
         @endif
@@ -62,8 +71,8 @@
         <div>{{ $data_buku->links() }}</div>
         <!-- <div><strong>Jumlah Buku: {{ $jumlahData }}</strong></div> -->
         <p class="mt-3">Jumlah Data: {{ $jumlahData }}</p>
-        <p>Total Harga: Rp {{ number_format($totalHarga, 2) }}</p>
-        <p><a href="{{ route('buku.create') }}" class="btn btn-primary">Tambah Buku</a></p>
+        <p>Total Harga: Rp {{ number_format($total, 2) }}</p>
+        <p><a href="/buku" class="btn btn-warning">Kembali</a></p>
     </div>
 
     <!-- Tautan Bootstrap JavaScript (Jika diperlukan) -->

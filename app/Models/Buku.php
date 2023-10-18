@@ -11,5 +11,6 @@ class Buku extends Model
     protected $casts = [
         'tgl_terbit' => 'datetime',
     ];
+    protected $dates =['tgl_terbit'];
     protected $fillable = ['judul', 'penulis', 'harga', 'tgl_terbit'];
 }
