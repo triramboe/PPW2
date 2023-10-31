@@ -31,9 +31,6 @@
         @if(Session::has('pesan'))
         <div class="alert alert-success">{{ session('pesan') }}</div>
         @endif
-
-        <h1>Daftar Buku</h1>
-
         <form action="{{ route('buku.search') }}" method="get" class="mb-3">
             <div class="input-group">
                 <input type="text" name="kata" class="form-control" placeholder="Cari buku...">
