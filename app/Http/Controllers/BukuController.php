@@ -104,4 +104,9 @@ class BukuController extends Controller
         $total = Buku::sum('harga');
         return view('Buku.search', compact('data_buku', 'no','jumlahData','total','cari'));
     }
+
+    public function __construct(){
+        $this->middleware('auth');
+    }  
 }
+

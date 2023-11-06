@@ -37,7 +37,9 @@
                 <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i> Cari</button>
             </div>
         </form>
-
+        @if(Auth::check() && Auth::user()->level == 'admin')
+        <a href="{{ route('buku.create')}}" class="btn btn-primary">Tambah Buku</a>
+        @endif
         <!-- Tabel daftar buku -->
         <table class="table table-striped">
             <thead class="bg-light">
@@ -47,7 +49,9 @@
                     <th>Penulis</th>
                     <th>Harga</th>
                     <th>Tanggal Terbit</th>
+                    @if(Auth::check() && Auth::user()->level == 'admin')
                     <th>Aksi</th>
+                    @endif
                 </tr>
             </thead>
             <tbody>
@@ -58,6 +62,7 @@
                     <td>{{ $buku->penulis }}</td>
                     <td>Rp {{ number_format($buku->harga, 2, ',', '.') }}</td>
                     <td>{{ $buku->tgl_terbit->format('d/m/Y') }}</td>
+                    @if(Auth::check() && Auth::user()->level == 'admin')
                     <td>
                         <div class="btn-group" role="group" style="overflow-x: auto;">
                             <form action="{{ route('buku.destroy', $buku->id) }}" method="post">
@@ -75,8 +80,8 @@
                                 </button>
                             </form>
                         </div>
-
                     </td>
+                    @endif
                 </tr>
                 @endforeach
             </tbody>
@@ -85,8 +90,6 @@
 
         <p class="mt-3">Jumlah Data: {{ $jumlahData }}</p>
         <p>Total Harga: Rp {{ number_format($totalHarga, 2) }}</p>
-
-        <a href="{{ route('buku.create') }}" class="btn btn-primary">Tambah Buku</a>
     </div>
     
 </x-app-layout>
