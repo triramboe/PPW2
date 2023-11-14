@@ -34,12 +34,25 @@
                 <input type="date" name="tgl_terbit" id="tgl_terbit" value="{{ $buku->tgl_terbit->format('Y-m-d') }}" class="form-control" required>
             </div>
 
-            <div class="col-span-full my-5">
+            <!-- <div class="col-span-full my-5">
                 <label for="thumbnail" class="block text-sm font-medium leading-6 text-gray-900">Thumbnail</label>
                 <div class="mt-2">
                     <input type="file" name="thumbnail" id="thumbnail">
                 </div>
+            </div> -->
+
+            <div class="col-span-full my-5">
+                <label for="thumbnail" class="block text-sm font-medium leading-6 text-gray-900">Thumbnail</label>
+                <div class="mt-2">
+                    @if($buku->filepath)
+                    <img src="{{ asset($buku->filepath) }}" alt="Thumbnail" width="100" />
+                    <input type="file" name="thumbnail" id="thumbnail">
+                    @else
+                    <input type="file" name="thumbnail" id="thumbnail">
+                    @endif
+                </div>
             </div>
+
 
             <div class="col-span-full my-5">
                 <label for="gallery" class="block text-sm font-medium leading-6 text-gray-900">Gallery</label>
@@ -54,7 +67,7 @@
                     };
                 </script>
             </div>
-            <div class="gallery_items">
+            <div class="gallery_items my-5">
                 @foreach($buku->galleries()->get() as $gallery)
                 <div class="gallery_item">
                     <img class="rounded-full object-cover object-center" src="{{ asset($gallery->path) }}" alt="" width="400" />
