@@ -168,4 +168,17 @@ class BukuController extends Controller
     public function __construct(){
         $this->middleware('auth');
     }  
+
+    public function deleteImage($buku_id, $image_id) {
+        $buku = Buku::find($buku_id);
+        $image = Gallery::find($image_id);
+    
+        if ($image && $buku && $image->buku_id === $buku->id) {
+            $image->delete();
+            return back()->with('pesan', 'Gambar Berhasil Dihapus');
+        } else {
+            return back()->with('error', 'Gambar Tidak Ditemukan');
+        }
+    }
+
 }

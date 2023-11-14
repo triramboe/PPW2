@@ -71,9 +71,14 @@
                 @foreach($buku->galleries()->get() as $gallery)
                 <div class="gallery_item">
                     <img class="rounded-full object-cover object-center" src="{{ asset($gallery->path) }}" alt="" width="400" />
+                    <form action="{{ route('buku.deleteImage', [$buku->id, $gallery->id]) }}" method="POST">
+                        @csrf
+                        <button class="btn btn-danger mt-1 mb-1" onClick="return confirm('Yakin mau dihapus?')">Hapus</button>
+                    </form>
                 </div>
                 @endforeach
             </div>
+
 
             <div class="mb-3">
                 <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
