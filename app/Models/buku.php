@@ -13,11 +13,15 @@ class buku extends Model
         'tgl_terbit' => 'datetime',
     ];
     protected $dates =['tgl_terbit'];
-    protected $fillable = ['judul', 'penulis', 'harga', 'tgl_terbit', 'filepath'];
+    protected $fillable = ['judul', 'penulis', 'harga', 'tgl_terbit', 'filepath', 'buku_seo', 'foto'];
 
     public function galleries():HasMany
     {
         return $this->hasMany(Gallery::class);
+    }
+
+    public function photos() {
+        return $this->hasMany(Buku::class, 'buku_id', 'id');
     }
 }
 

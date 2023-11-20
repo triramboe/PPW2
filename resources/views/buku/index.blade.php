@@ -62,13 +62,11 @@
                     <td>
                         @if ( $buku->filepath )
                         <div class="relative h-10 w-10">
-                            <img class="h-full w-full rounded-full object-cover object-center" 
-                            src="{{ asset($buku->filepath) }}" 
-                            alt="" />
+                            <img class="h-full w-full object-cover object-center" src="{{ asset($buku->filepath) }}" alt="" />
                         </div>
                         @endif
                     </td>
-                    <td>{{ $buku->judul }}</td>
+                    <td><a href="{{ route('buku.galeri', $buku->id) }}">{{ $buku->judul }}</a></td>
                     <td>{{ $buku->penulis }}</td>
                     <td>Rp {{ number_format($buku->harga, 2, ',', '.') }}</td>
                     <td>{{ $buku->tgl_terbit->format('Y-m-d') }}</td>

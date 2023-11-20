@@ -40,25 +40,25 @@
                     @if($buku->filepath)
                     <img src="{{ asset($buku->filepath) }}" alt="Thumbnail" width="100" class="me-3">
                     @endif
-                    <input type="file" name="thumbnail" id="thumbnail">
+                    <input type="file" name="thumbnail" id="thumbnail" class="form-control">
                 </div>
             </div>
 
             <div class="col-span-full mt-6">
                 <label for="gallery" class="block text-sm font-medium text-gray-600">Gallery</label>
-                <div class="mt-2" id="fileinput_wrapper"></div>
-                <a href="javascript:void(0);" id="tambah" onclick="addFileInput()" class="text-blue-600 hover:underline btn btn-primary">Tambah</a>
+                <div class="mt-1" id="fileinput_wrapper"></div>
+                <a href="javascript:void(0);" id="tambah" onclick="addFileInput()" class="text-blue-600 hover:underline">Tambah</a>
                 <script type="text/javascript">
                     function addFileInput() {
                         var div = document.getElementById('fileinput_wrapper');
-                        div.innerHTML += '<input type="file" name="gallery[]" id="gallery" class="form-input block w-full rounded-md mb-5" style="margin-bottom:5px;">';
+                        div.innerHTML += '<input type="file" name="gallery[]" id="gallery" class="form-control mb-5" style="margin-bottom:5px;">';
                     };
                 </script>
             </div>
 
             <div class="my-5 flex items-center justify-end space-x-6">
                 <a href="/buku" class="btn btn-warning">Batal</a>
-                <button type="submit" class="btn btn-success">Simpan</button>
+                <button type="submit" class="btn btn-primary">Simpan</button>
             </div>
 
 

@@ -41,7 +41,7 @@
 
             <div class="my-4">
                 <label for="thumbnail" class="block text-sm font-medium text-gray-600">Thumbnail</label>
-                <input type="file" id="thumbnail" name="thumbnail" class="form-input mt-1 block w-full rounded-md">
+                <input type="file" id="thumbnail" name="thumbnail" class="form-control">
             </div>
 
             <div class="col-span-full mt-6">
@@ -51,7 +51,7 @@
                 <script type="text/javascript">
                     function addFileInput() {
                         var div = document.getElementById('fileinput_wrapper');
-                        div.innerHTML += '<input type="file" name="gallery[]" id="gallery" class="form-input block w-full rounded-md mb-5" style="margin-bottom:5px;">';
+                        div.innerHTML += '<input type="file" name="gallery[]" id="gallery" class="form-control mb-5" style="margin-bottom:5px;">';
                     };
                 </script>
             </div>

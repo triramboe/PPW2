@@ -218,4 +218,10 @@ class BukuController extends Controller
             return back()->with('error', 'Gambar Tidak Ditemukan');
         }
     }
+
+    public function galbuku($id) {
+        $bukus = Buku::find($id);
+        $galeris = $bukus->galleries()->paginate(6);
+        return view('buku.galeri', compact('bukus', 'galeris'));
+    }
 }

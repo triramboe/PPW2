@@ -39,6 +39,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/buku/search', [BukuController::class, 'search'])->name('buku.search');
+    Route::get('/detail_buku/{id}', [BukuController::class, 'galbuku'])->name('buku.galeri');
 });
 
 
