@@ -24,7 +24,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
-    
+
     Route::middleware('admin')->group(function () {
         Route::get('/buku/create', [BukuController::class, 'create'])->name('buku.create');
         Route::post('/buku', [BukuController::class, 'store'])->name('buku.store');
@@ -33,15 +33,20 @@ Route::middleware('auth')->group(function () {
         Route::post('/buku/update/{id}', [BukuController::class, 'update'])->name('buku.update');
         Route::post('/buku/edit/{id}/delete-image/{image_id}', [BukuController::class, 'deleteImage'])->name('buku.deleteImage');
     });
-    
+
+    Route::middleware(['auth', 'checkUserRole'])->group(function () {
+        Route::get('/buku/{id}', [BukuController::class, 'show'])->name('buku.show');
+        Route::post('/buku/{id}/rate', [BukuController::class, 'rate'])->name('buku.rate');
+        Route::post('/buku/{id}/addToFavorites', [BukuController::class, 'addToFavorites'])->name('buku.addToFavorites');
+        Route::get('/buku/myFavorites', [BukuController::class, 'myFavorites'])->name('buku.myFavorites');
+    });
+
     Route::get('/buku', [BukuController::class, 'index']);
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/buku/search', [BukuController::class, 'search'])->name('buku.search');
     Route::get('/detail_buku/{id}', [BukuController::class, 'galbuku'])->name('buku.galeri');
-    Route::get('/buku/{id}', [BukuController::class, 'show'])->name('buku.show');
-    Route::post('/buku/{id}/rate', [BukuController::class, 'rate'])->name('buku.rate');
 });
 
 
