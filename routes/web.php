@@ -40,6 +40,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/buku/search', [BukuController::class, 'search'])->name('buku.search');
     Route::get('/detail_buku/{id}', [BukuController::class, 'galbuku'])->name('buku.galeri');
+    Route::get('/buku/{id}', [BukuController::class, 'show'])->name('buku.show');
+    Route::post('/buku/{id}/rate', [BukuController::class, 'rate'])->name('buku.rate');
 });
 
 

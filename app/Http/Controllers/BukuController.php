@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Buku;
 use App\Models\Gallery;
 use Intervention\Image\Facades\Image;
+use App\Http\Controllers\Auth;
+use App\Models\rating;
 
 class BukuController extends Controller
 {
@@ -92,7 +94,34 @@ class BukuController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $buku = Buku::findOrFail($id);
+
+        $ratings = rating::where('book_id', $id)->get();
+
+        $averageRating = $ratings->avg('rating');
+
+        return view('buku.detail', [
+            'buku' => $buku,
+            'ratings' => $ratings,
+            'averageRating' => $averageRating
+        ]);
+    }
+
+    public function rate(Request $request, $id)
+    {
+
+        $request->validate([
+            'rating' => 'required|integer|min:1|max:5', // Adjust the validation rules as needed
+        ]);
+
+        $rating = new rating();
+        $rating->user_id = auth()->id();
+        $rating->book_id = $id;
+        $rating->rating = $request->input('rating');
+        $rating->save();
+
+        // You may want to redirect back or to the book detail page
+        return redirect()->route('buku.show', $id)->with('success', 'Rating submitted successfully!');
     }
 
     /**
@@ -219,7 +248,8 @@ class BukuController extends Controller
         }
     }
 
-    public function galbuku($id) {
+    public function galbuku($id)
+    {
         $bukus = Buku::find($id);
         $galeris = $bukus->galleries()->paginate(6);
         return view('buku.galeri', compact('bukus', 'galeris'));

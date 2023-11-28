@@ -58,7 +58,7 @@
             <tbody>
                 @foreach($data_buku as $buku)
                 <tr>
-                    <td>{{ $buku->id }}</td>
+                    <td><a href="{{ route('buku.show', $buku->id) }}">{{ $buku->id }}</a></td>
                     <td>
                         @if ( $buku->filepath )
                         <div class="relative h-10 w-10">

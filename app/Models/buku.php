@@ -12,16 +12,26 @@ class buku extends Model
     protected $casts = [
         'tgl_terbit' => 'datetime',
     ];
-    protected $dates =['tgl_terbit'];
+    protected $dates = ['tgl_terbit'];
     protected $fillable = ['judul', 'penulis', 'harga', 'tgl_terbit', 'filepath', 'buku_seo', 'foto'];
 
-    public function galleries():HasMany
+    public function galleries(): HasMany
     {
         return $this->hasMany(Gallery::class);
     }
 
-    public function photos() {
+    public function photos()
+    {
         return $this->hasMany(Buku::class, 'buku_id', 'id');
     }
-}
 
+    public function ratings()
+    {
+        return $this->hasMany(rating::class);
+    }
+
+    public function averageRating()
+    {
+        return $this->ratings->avg('rating');
+    }
+}
