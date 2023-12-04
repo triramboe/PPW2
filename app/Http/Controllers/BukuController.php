@@ -11,12 +11,12 @@ class BukuController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {   
-
+    {  
+         
         $batas = 5;
         //jumlah data buku
         $jumlahData = Buku::count();
-        $data_buku = Buku::orderBy('id', 'desc')->simplePaginate($batas);
+        $data_buku = Buku::orderBy('id', 'desc')->paginate($batas);;
         $no = $batas * ($data_buku->currentPage() - 1);
         //jumlah harga seluruh buku
         $totalHarga = Buku::sum('harga');
